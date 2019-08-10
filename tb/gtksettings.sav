@@ -1,0 +1,137 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Sat Aug 10 11:51:33 2019
+[*]
+[timestart] 0
+[size] 2560 1385
+[pos] -1 -1
+*-7.163993 126 2410 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+[treeopen] tb.DUT.
+[treeopen] tb.DUT.Vcortex_m0_wrapper.
+[treeopen] tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.
+[treeopen] tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.
+[treeopen] tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.
+[sst_width] 212
+[signals_width] 374
+[sst_expanded] 1
+[sst_vpaned_height] 542
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.clk_i
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.rst_i
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.rst_cpu_i
+@200
+-
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_awvalid_i
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_awaddr_i[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_wvalid_i
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_wdata_i[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_awready_o
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_t_wready_o
+@200
+-
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_imem.addr1_i[12:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_imem.wr1_i[3:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_imem.data1_i[31:0]
+@200
+-
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_dmem.addr1_i[12:0]
+@23
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_dmem.data1_i[31:0]
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_tcm.u_dmem.wr1_i[3:0]
+@800200
+-AHB
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_htrans_o[1:0]
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_haddr_o[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_hsize_o[2:0]
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_hwdata_o[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_hwrite_o
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_hrdata_i[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.ahb_hready_i
+@1000200
+-AHB
+@200
+-
+@800200
+-AXI-WR
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_awvalid_o
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_awaddr_o[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_wvalid_o
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_wdata_o[31:0]
+@1000200
+-AXI-WR
+@200
+-
+@800200
+-AXI-RD
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_arvalid_o
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_araddr_o[31:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_rvalid_i
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.axi_i_rdata_i[31:0]
+@1000200
+-AXI-RD
+@200
+-
+@800200
+-STATUS
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_control[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_msp[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_pc[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_primask[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_psp[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r00[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r01[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r02[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r03[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r04[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r05[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r06[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r07[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r08[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r09[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r10[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r11[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r12[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_r14[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.cm0_xpsr[31:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_apsr[3:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_control
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_ipsr[5:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_msp[29:0]
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_pc[30:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_primask
+@22
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_psp[29:0]
+@28
+tb.DUT.Vcortex_m0_wrapper.cortex_m0_wrapper.u_core.u_core.vis_tbit
+@1000200
+-STATUS
+[pattern_trace] 1
+[pattern_trace] 0
