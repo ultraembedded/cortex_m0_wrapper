@@ -6,7 +6,7 @@ This wrapper takes the Cortex-M0 DesignStart IP from ARM and wraps it with some 
 
 This makes it very easy to instance on FPGA and to hookup the Cortex-M0 to various Xilinx AXI-4 IP cores.
 
-This requires the Cortex-M0 DesignStart core from ARM (specifically CORTEXM0DS.v and cortexm0ds_logic.v);
+This requires the Cortex-M0 DesignStart core from ARM (specifically CORTEXM0INTEGRATION.v/CORTEXM0DS.v and cortexm0ds_logic.v);
 * https://developer.arm.com/products/processors/cortex-m/cortex-m0
 
 ##### Features

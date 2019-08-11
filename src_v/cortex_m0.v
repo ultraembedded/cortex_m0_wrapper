@@ -59,37 +59,135 @@ module cortex_m0
 
 
 
-CORTEXM0DS
-u_core
-(
-    // CLOCK AND RESETS ------------------
-    .HCLK(clk_i),                   // Clock
-    .HRESETn(~rst_i),               // Asynchronous reset
-    // AHB-LITE MASTER PORT --------------
-    .HADDR(ahb_haddr_o),            // AHB transaction address
-    .HBURST(ahb_hburst_o),          // AHB burst: tied to single
-    .HMASTLOCK(ahb_hmastlock_o),    // AHB locked transfer (always zero)
-    .HPROT(ahb_hprot_o),            // AHB protection: priv; data or inst
-    .HSIZE(ahb_hsize_o),            // AHB size: byte, half-word or word
-    .HTRANS(ahb_htrans_o),          // AHB transfer: non-sequential only
-    .HWDATA(ahb_hwdata_o),          // AHB write-data
-    .HWRITE(ahb_hwrite_o),          // AHB write control
-    .HRDATA(ahb_hrdata_i),          // AHB read-data
-    .HREADY(ahb_hready_i),          // AHB stall signal
-    .HRESP(ahb_hresp_i),            // AHB error response
-    // MISCELLANEOUS ---------------------
-    .NMI(1'b0),                     // Non-maskable interrupt input
-    .IRQ(intr_i),                   // Interrupt request inputs
-    .TXEV(),                        // Event output (SEV executed)
-    .RXEV(1'b0),                    // Event input
-    .LOCKUP(),                      // Core is locked-up
-    .SYSRESETREQ(),                 // System reset request
-    .STCLKEN(1'b1),                 // SysTick SCLK clock enable
-    .STCALIB(26'd0),                // SysTick calibration register value
+`ifdef CORTEX_M0_DS_OLDER
+    CORTEXM0DS
+    u_core
+    (
+        // CLOCK AND RESETS ------------------
+        .HCLK(clk_i),                   // Clock
+        .HRESETn(~rst_i),               // Asynchronous reset
+        // AHB-LITE MASTER PORT --------------
+        .HADDR(ahb_haddr_o),            // AHB transaction address
+        .HBURST(ahb_hburst_o),          // AHB burst: tied to single
+        .HMASTLOCK(ahb_hmastlock_o),    // AHB locked transfer (always zero)
+        .HPROT(ahb_hprot_o),            // AHB protection: priv; data or inst
+        .HSIZE(ahb_hsize_o),            // AHB size: byte, half-word or word
+        .HTRANS(ahb_htrans_o),          // AHB transfer: non-sequential only
+        .HWDATA(ahb_hwdata_o),          // AHB write-data
+        .HWRITE(ahb_hwrite_o),          // AHB write control
+        .HRDATA(ahb_hrdata_i),          // AHB read-data
+        .HREADY(ahb_hready_i),          // AHB stall signal
+        .HRESP(ahb_hresp_i),            // AHB error response
+        // MISCELLANEOUS ---------------------
+        .NMI(1'b0),                     // Non-maskable interrupt input
+        .IRQ(intr_i),                   // Interrupt request inputs
+        .TXEV(),                        // Event output (SEV executed)
+        .RXEV(1'b0),                    // Event input
+        .LOCKUP(),                      // Core is locked-up
+        .SYSRESETREQ(),                 // System reset request
+        .STCLKEN(1'b1),                 // SysTick SCLK clock enable
+        .STCALIB(26'd0),                // SysTick calibration register value
 
-    // POWER MANAGEMENT ------------------
-    .SLEEPING()                     // Core and NVIC sleeping
-);
+        // POWER MANAGEMENT ------------------
+        .SLEEPING()                     // Core and NVIC sleeping
+    );
+`else
+    wire CDBGPWRUPREQ;
+    wire CDBGPWRUPACK;
+    reg  cdbgpwrup_q;
+
+    always @(posedge clk_i or posedge rst_i)
+    if (rst_i)
+        cdbgpwrup_q <= 1'b0;
+    else
+        cdbgpwrup_q <= CDBGPWRUPREQ;
+
+    assign CDBGPWRUPACK   = cdbgpwrup_q;
+
+    CORTEXM0INTEGRATION
+    u_core
+    (
+        // System inputs
+        .FCLK           (clk_i),
+        .SCLK           (clk_i),
+        .HCLK           (clk_i),
+        .DCLK           (clk_i),
+        .PORESETn       (~rst_i),
+        .HRESETn        (~rst_i),
+        .DBGRESETn      (~rst_i),
+        .RSTBYPASS      (1'b0),
+        .SE             (1'b0),
+
+        // Power management inputs
+        .SLEEPHOLDREQn  (1'b1),
+        .WICENREQ       (1'b0),
+        .CDBGPWRUPACK   (CDBGPWRUPACK),
+
+        // Power management outputs
+        .SLEEPHOLDACKn  (),
+        .WICENACK       (),
+        .CDBGPWRUPREQ   (CDBGPWRUPREQ),
+
+        .WAKEUP         (),
+        .WICSENSE       (),
+        .GATEHCLK       (),
+        .SYSRESETREQ    (),
+
+        // System bus
+        .HADDR          (ahb_haddr_o),
+        .HTRANS         (ahb_htrans_o),
+        .HSIZE          (ahb_hsize_o),
+        .HBURST         (ahb_hburst_o),
+        .HPROT          (ahb_hprot_o),
+        .HMASTER        (),
+        .HMASTLOCK      (ahb_hmastlock_o),
+        .HWRITE         (ahb_hwrite_o),
+        .HWDATA         (ahb_hwdata_o),
+        .HRDATA         (ahb_hrdata_i),
+        .HREADY         (ahb_hready_i),
+        .HRESP          (ahb_hresp_i),
+
+        .CODEHINTDE     (),
+        .SPECHTRANS     (),
+        .CODENSEQ       (),
+
+        // Interrupts
+        .IRQ            (intr_i),
+        .NMI            (1'b0),
+        .IRQLATENCY     (8'h00),
+        .ECOREVNUM      (28'h0),
+
+        // Systick
+        .STCLKEN        (1'b1),
+        .STCALIB        (26'd0),
+
+        // Debug - JTAG or Serial wire
+        // Inputs
+        .nTRST          (1'b0),
+        .SWDITMS        (1'b0),
+        .SWCLKTCK       (1'b0),
+        .TDI            (1'b0),
+        // Outputs
+        .TDO            (),
+        .nTDOEN         (),
+        .SWDO           (),
+        .SWDOEN         (),
+
+        .DBGRESTART     (1'b0),
+        .DBGRESTARTED   (),
+
+        // Event communication
+        .TXEV           (),
+        .RXEV           (1'b0),
+        .EDBGRQ         (1'b0),
+
+        // Status output
+        .HALTED         (),
+        .LOCKUP         (),
+        .SLEEPING       (),
+        .SLEEPDEEP      ()
+    );
+`endif
 
 //-------------------------------------------------------------
 // Debug
